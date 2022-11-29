@@ -1,9 +1,11 @@
 package ru.zhuravl;
 
 public interface InterfaceList {
-    public void add(String[] arr, String item);
-    public void remove(int position);
-    public void show();
-//    public String pop();
-//    public void reset();
+    void add(String item);
+
+    void remove(int position);
+
+    String get(int i);
+
+    int size();
 }
