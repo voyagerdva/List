@@ -1,11 +1,13 @@
 plugins {
     id 'java'
+    id("maven-publish")
 }
 
 group 'ru.zhuravl'
 version '1.0.0'
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 
@@ -16,4 +18,16 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = group
+            artifactId = 'listLib'
+            version = version
+
+            from components.java
+        }
+    }
 }
