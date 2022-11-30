@@ -1,6 +1,13 @@
 package ru.zhuravl;
 
 public class List implements InterfaceList{
+
+    @Override
+    public void addFirst() {
+        Node node0 = new Node("NODE000", null);
+        System.out.println(node0.value);
+    }
+
     public void add(String item) {
         System.out.println("\nThis is Lib-method public void add(String item)");
         System.out.println();
