@@ -2,10 +2,11 @@ package ru.zhuravl;
 
 public class Node {
     String value;
-    Node next;
+    Node previous;
+    int position = 0;
 
-    Node(String value, Node next) {
+    Node(String value, Node previous) {
         this.value = value;
-        this.next = next;
+        this.previous = previous;
     }
 }
