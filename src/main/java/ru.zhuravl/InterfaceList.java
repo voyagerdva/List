@@ -6,9 +6,11 @@ public interface InterfaceList {
 
     void printList();
 
-    void remove(int position);
+    void removeHead();
+    void removeTail();
+    void removePosition(int position);
 
-    String getNode(int position);
+    String get(int index);
 
     int size();
 
