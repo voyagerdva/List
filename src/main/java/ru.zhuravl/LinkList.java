@@ -4,13 +4,7 @@ public class LinkList implements InterfaceList{
 
     public class Node {
         String value;
-        Node previous;
         Node next;
-
-//    Node(String value, Node previous) {
-//        this.value = value;
-//        this.previous = previous;
-//    }
 
         Node(String value, Node next) {
             this.value = value;
@@ -20,82 +14,88 @@ public class LinkList implements InterfaceList{
 
 
     Node tail;
-    Node currentNode;
     Node head;
+    int size;
 
     LinkList() {
         initZero();
     }
 
     void initZero() {
+        size = -1;
         this.tail = null;
         this.head = tail;
         System.out.println("Begin: Create new list with 0 elements:");
         System.out.println("-----");
     }
 
-
-// !!! это рабочий метод. Работает "в обратную сторону". Попробую сделать чтоб работал прямо.
-//    void add(String data) {
-//        Node node = new Node(data, currentNode);
-//        currentNode = node;
-//        currentNode.position = position++;
-//        System.out.println("    position = " + currentNode.position);
-//    }
-
     public void add(String data) {
-        if (tail == null && head == tail) {
-            Node node = new Node(data, null);
-            tail = node;
-            head = node;
-            currentNode = node;
-            System.out.println("Add FIRST NODE - " + node.value);
+        if (tail == null) {
+            size++;
+            Node nodeFirst = new Node(data, null);
+            System.out.println("Add first node (nodeFirst) - " + nodeFirst.value);
+            tail = nodeFirst;
+            head = tail;
+            System.out.println("tail.next = " + tail.next);
+            System.out.println(tail);
+            System.out.println(nodeFirst);
+            System.out.println(head);
+
+            System.out.printf("%-40s %-50s\n", " - linkList.tail:", tail);
+            System.out.printf("%-40s %-50s\n", " - linkList.tail.next:", tail.next);
+            System.out.printf("%-40s %-50s\n", " - linkList.head:", head);
+            System.out.printf("%-40s %-50s\n", " - linkList.head.value:", head.value);
+            System.out.println("-----");
+
             return;
         }
-        currentNode = head;
+        size++;
         Node node = new Node(data, null);
+        head.next = node;
         head = node;
         System.out.println("ADDED NEXT NODE - " + node.value);
+        System.out.printf("%-40s %-50s\n", " - linkList.tail:", tail);
+        System.out.printf("%-40s %-50s\n", " - linkList.tail.next:", tail.next);
+        System.out.printf("%-40s %-50s\n", " - linkList.head:", head);
+        System.out.printf("%-40s %-50s\n", " - linkList.head.value:", head.value);
+        System.out.println("-----");
     }
-
 
 
     public void printList() {
+        System.out.println("====== printList: =========================================");
         Node ref = tail;
-        while (ref != null) {
-            System.out.printf("%s ", ref.value);
-            ref = ref.previous;
+
+        for (int i = 0; i <= size; i++) {
+            System.out.printf("%-4s : %s\n", i, ref.value);
+            System.out.printf("%-40s %-50s\n", " - linkList.tail:", tail);
+            System.out.printf("%-40s %-50s\n", " - linkList.tail.next:", tail.next);
+            System.out.printf("%-40s %-50s\n", " - linkList.ref:", ref);
+            System.out.printf("%-40s %-50s\n", " - linkList.ref.next:", ref.next);
+            System.out.printf("%-40s %-50s\n", " - linkList.head:", head);
+            System.out.printf("%-40s %-50s\n", " - linkList.head.value:", head.value);
+            System.out.println("-----");
+
+            ref = ref.next;
         }
+    }
+
+    public String getNode(int position) {
+
+        return "";
     }
 
 
 
 
 
-
-
-
-
-    public void printAll() {
-        Node ref = tail;
-        while (ref != null) {
-            System.out.printf("%s ", ref.value);
-            ref = ref.previous;
-        }
-    }
-
-
+//=================================================================
 
     public void remove(int position) {
         System.out.println();
         System.out.println();
     }
 
-    @Override
-    public String get(int i) {
-        System.out.println();
-        return null;
-    }
 
     @Override
     public int size() {

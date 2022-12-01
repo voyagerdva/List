@@ -4,11 +4,11 @@ public interface InterfaceList {
 
     void add(String data);
 
-    void printAll();
+    void printList();
 
     void remove(int position);
 
-    String get(int position);
+    String getNode(int position);
 
     int size();
 
