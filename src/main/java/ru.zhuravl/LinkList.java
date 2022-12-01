@@ -99,8 +99,9 @@ public class LinkList implements InterfaceList{
         for (int i = 0; i < index; i++) {
             node = node.next;
         }
-        System.out.printf(" - %-15s %-35s %-10s %-10s\n", "The node value by index ", index, "is: ", node.value);
-        System.out.printf(" - %-15s %-35s %-10s %-10s\n", "The node value by index ", index, "is: ", node.next);
+        System.out.printf(" - %s %s %s %s\n", "node value by index ", index, "is: ", node.value);
+        System.out.printf(" - %s %s %s %s\n", "the node by index ", index, "is: ", node);
+        System.out.printf(" - %s %s %s\n", "node.next ", "is: ", node.next);
         return node.value;
     }
 
