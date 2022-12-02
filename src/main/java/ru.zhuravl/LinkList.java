@@ -14,7 +14,6 @@ public class LinkList implements InterfaceList{
         }
     }
 
-
     Node tail;
     Node head;
     int size;
@@ -27,88 +26,59 @@ public class LinkList implements InterfaceList{
         size = 0;
         this.tail = null;
         this.head = tail;
-        System.out.println("Begin: Create new list with 0 elements:");
-        System.out.println("-----");
     }
 
     public void add(String data) {
-        if (tail == null) {
-            size++;
-            Node nodeFirst = new Node(data, null);
-            System.out.println("Add first node (nodeFirst) - " + nodeFirst.value);
-            tail = nodeFirst;
-            head = tail;
-            System.out.println("-----");
-            return;
-        }
         size++;
         Node node = new Node(data, null);
-        head.next = node;
+        if (tail == null) tail = node;
+        else head.next = node;
         head = node;
-        System.out.println("ADDED NEXT NODE - " + node.value);
-        System.out.println("-----");
     }
 
 
     public void removeHead() {
-        System.out.println("====== removeHead: =========================================");
-
         Node ref = tail;
-
-        for (int i = 0; i < size-2; i++) {
-            ref = ref.next;
-        }
+        for (int i = 0; i < size-2; i++) ref = ref.next;
         head = ref;
         head.next = null;
         size--;
-        System.out.println("We have removed HEAD:");
-        System.out.printf("%-25s %-35s\n", " - New head is:", head);
-        System.out.printf("%-25s %-35s\n", " - New head.value:", head.value);
-        System.out.printf("%-25s %-35s\n", " - New head.next:", head.next);
-        System.out.println("-----");
     }
 
 
     public void printList() {
-        System.out.println("====== printList: =========================================");
         Node ref = tail;
-
         for (int i = 0; i < size; i++) {
-            System.out.printf("%-4s : %s\n", i, ref.value);
-            System.out.printf("%-15s %-35s\n", " - tail:", tail);
-            System.out.printf("%-15s %-35s\n", " - tail.next:", tail.next);
-            System.out.printf("%-15s %-35s\n", " - ref:", ref);
-            System.out.printf("%-15s %-35s\n", " - ref.next:", ref.next);
-            System.out.printf("%-15s %-35s\n", " - head:", head);
-            System.out.println("-----");
-
+            System.out.printf("%s ",ref.value);
             ref = ref.next;
         }
     }
 
+    public String[] getList() {
+        Node ref = tail;
+        String[] list = new String[size];
 
-    public String get(int index) {
-        System.out.println("===== Get Node by position " + index + " ==========================");
+        for (int i = 0; i < size; i++) {
+            list[i] = ref.value;
+            ref = ref.next;
+        }
+        return list;
+    }
+
+
+    public String getNode(int index) {
         if (index > size-1) {
             System.out.println("ERROR!!! Your index is exceeds the max size of list !!!!!!!");
             return null;
         }
-
         Node node = tail;
-
-        for (int i = 0; i < index; i++) {
-            node = node.next;
-        }
-        System.out.printf(" - %s %s %s %s\n", "node value by index ", index, "is: ", node.value);
-        System.out.printf(" - %s %s %s %s\n", "the node by index ", index, "is: ", node);
-        System.out.printf(" - %s %s %s\n", "node.next ", "is: ", node.next);
+        for (int i = 0; i < index; i++) node = node.next;
         return node.value;
     }
 
 
     @Override
     public int size() {
-        System.out.println("Size is: " + size);
         return size;
     }
 

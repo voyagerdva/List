@@ -5,12 +5,14 @@ public interface InterfaceList {
     void add(String data);
 
     void printList();
+    String[] getList();
+    String getNode(int index);
 
     void removeHead();
     void removeTail();
     void removePosition(int position);
 
-    String get(int index);
+
 
     int size();
 
