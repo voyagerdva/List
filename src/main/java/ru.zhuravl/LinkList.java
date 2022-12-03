@@ -1,6 +1,6 @@
 package ru.zhuravl;
 
-import java.sql.SQLOutput;
+import java.util.Arrays;
 
 public class LinkList implements InterfaceList{
 
@@ -37,6 +37,48 @@ public class LinkList implements InterfaceList{
     }
 
 
+    public void addList(InterfaceList list) {
+        for (int i = 0; i < list.size(); i++) {
+            size++;
+            Node newNode = list.getNode(i);
+            if (this.tail == null) this.tail = newNode;
+            else this.head.next = newNode;
+            this.head = newNode;
+        }
+    }
+
+
+    public Node getNode(int index) {
+        if (index > size-1) {
+            System.out.println("ERROR!!! Your index is exceeds the max size of list !!!!!!!");
+            return null;
+        }
+        Node node = tail;
+        for (int i = 0; i < index; i++) node = node.next;
+        return node;
+    }
+
+
+
+    public String getNodeValue(int index) {
+        if (index > size-1) {
+            System.out.println("ERROR!!! Your index is exceeds the max size of list !!!!!!!");
+            return null;
+        }
+        Node node = tail;
+        for (int i = 0; i < index; i++) node = node.next;
+        return node.value;
+    }
+
+
+//==========================================================================================================
+
+    public InterfaceList intersect(InterfaceList list) {
+        return list;
+    }
+
+
+
     public void removeHead() {
         Node ref = tail;
         for (int i = 0; i < size-2; i++) ref = ref.next;
@@ -65,16 +107,6 @@ public class LinkList implements InterfaceList{
         return list;
     }
 
-
-    public String getNode(int index) {
-        if (index > size-1) {
-            System.out.println("ERROR!!! Your index is exceeds the max size of list !!!!!!!");
-            return null;
-        }
-        Node node = tail;
-        for (int i = 0; i < index; i++) node = node.next;
-        return node.value;
-    }
 
 
     @Override
