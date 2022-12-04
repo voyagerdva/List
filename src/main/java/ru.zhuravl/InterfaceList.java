@@ -7,19 +7,16 @@ public interface InterfaceList {
     void printList();
     String[] getList();
     String getNodeValue(int index);
-    LinkList.Node getNode(int index);
+    InterfaceItem getNode(int index);
 
     public void addList(InterfaceList list);
 
     public InterfaceList intersect(InterfaceList list);
 
     void removeHead();
-    void removeTail();
-    void removePosition(int position);
 
+    int getSize();
 
-
-    int size();
 
 
 
