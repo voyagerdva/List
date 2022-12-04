@@ -5,13 +5,14 @@ public interface InterfaceList {
     void add(String data);
 
     void printList();
-    String[] getList();
+    String[] getListValues();
     String getNodeValue(int index);
     InterfaceItem getNode(int index);
 
     public void addList(InterfaceList list);
 
-    public InterfaceList intersect(InterfaceList list);
+    public InterfaceList intersectValues(InterfaceList list);
+    public InterfaceList intersectList(InterfaceList list);
 
     void removeHead();
 
