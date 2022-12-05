@@ -16,21 +16,19 @@ public class LinkList implements InterfaceList {
             return value;
         }
 
-        public InterfaceItem getItem() {
-            return this;
-        }
     }
 //==============================================================================
-    public Node getTail() {
-        return tail;
-    }
-
-    public Node getHead() {
-        return head;
-    }
 
     public int getSize() {
         return size;
+    }
+
+    public InterfaceItem getTail() {
+        return tail;
+    }
+
+    public InterfaceItem getHead() {
+        return head;
     }
 
     private Node tail;
@@ -49,8 +47,8 @@ public class LinkList implements InterfaceList {
 
     public InterfaceItem getNode(int index) {
         if (index > size-1) {
-            System.out.println("ERROR!!! Your index exceeds the list max size !!!");
-            return null;
+            System.out.println("ERROR!!! Your index exceeds the list max size !!! The last head node is :");
+            return getHead();
         }
         InterfaceItem node = tail;
         for (int i = 0; i < index; i++)
@@ -59,11 +57,7 @@ public class LinkList implements InterfaceList {
     }
 
 
-    public String getNodeValue(int index) {
-        if (index > getSize()-1) {
-            System.out.println("ERROR!!! Your index is exceeds the max size of list !!!!!!!");
-            return null;
-        }
+    private String getNodeValue(int index) {
         Node node = tail;
         for (int i = 0; i < index; i++)
             node = node.next;
