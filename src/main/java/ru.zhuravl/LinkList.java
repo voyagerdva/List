@@ -98,7 +98,6 @@ public class LinkList implements InterfaceList {
     }
 
 
-
 //==========================================================================================================
 
     public void removeHead() {
