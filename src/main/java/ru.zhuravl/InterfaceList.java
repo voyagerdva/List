@@ -14,6 +14,10 @@ public interface InterfaceList {
 
     void removeHead();
 
+    void removeElement(int index);
+
+    String getElement(int index);
+
     int getSize();
 
 }

@@ -57,7 +57,11 @@ public class LinkList implements InterfaceList {
     }
 
 
-    private String getNodeValue(int index) {
+    public String getElement(int index) {
+        if (index > size - 1) {
+            System.out.println("ERROR!!! Too big index!!!");
+            return null;
+        }
         Node node = tail;
         for (int i = 0; i < index; i++)
             node = node.next;
@@ -91,8 +95,8 @@ public class LinkList implements InterfaceList {
 
         for (int i = 0; i < this.size-1; i++) {
             for (int j = 0; j < list.size-1; j++)
-                if (this.getNodeValue(i) == (list).getNodeValue(j))
-                    list3.add(list.getNodeValue(j));
+                if (this.getElement(i) == (list).getElement(j))
+                    list3.add(list.getElement(j));
         }
         return list3;
     }
@@ -106,6 +110,28 @@ public class LinkList implements InterfaceList {
             ref = ref.next;
         head = ref;
         head.next = null;
+        size--;
+    }
+
+    @Override
+    public void removeElement(int index) {
+        Node ref = tail;
+
+        if (index == 0) {
+            tail = ref.next;
+            size--;
+            return;
+        }
+
+        if (index == size - 1) {
+            removeHead();
+            return;
+        }
+
+        for (int i = 0; i < index - 1 ; i++)
+            ref = ref.next;
+
+        ref.next = ref.next.next;
         size--;
     }
 
