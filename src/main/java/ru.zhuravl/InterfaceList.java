@@ -5,20 +5,19 @@ public interface InterfaceList {
     void add(String data);
 
     void printList();
-    String[] getList();
-    String getNode(int index);
+
+    String[] getListValues();
+
+    public void addList(LinkList list);
+
+    public InterfaceList intersect(LinkList list);
 
     void removeHead();
-    void removeTail();
-    void removePosition(int position);
 
+    void removeElement(int index);
 
+    String getElement(int index);
 
-    int size();
+    int getSize();
 
-
-
-//    Node addFirst();
-//
-//    void printFirst(Node obj);
 }
