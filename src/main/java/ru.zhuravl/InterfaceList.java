@@ -11,17 +11,10 @@ public interface InterfaceList {
 
     public void addList(InterfaceList list);
 
-    public InterfaceList intersectValues(InterfaceList list);
-    public InterfaceList intersectList(InterfaceList list);
+    public InterfaceList intersect(InterfaceList list);
 
     void removeHead();
 
     int getSize();
 
-
-
-
-//    Node addFirst();
-//
-//    void printFirst(Node obj);
 }
