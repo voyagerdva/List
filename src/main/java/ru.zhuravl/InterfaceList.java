@@ -6,12 +6,12 @@ public interface InterfaceList {
 
     void printList();
     String[] getListValues();
-    String getNodeValue(int index);
-    InterfaceItem getNode(int index);
+//    String getNodeValue(int index);
+//    InterfaceItem getNode(int index);
 
-    public void addList(InterfaceList list);
+    public void addList(LinkList list);
 
-    public InterfaceList intersect(InterfaceList list);
+    public InterfaceList intersect(LinkList list);
 
     void removeHead();
 

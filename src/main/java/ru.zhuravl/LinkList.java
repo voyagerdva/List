@@ -50,7 +50,7 @@ public class LinkList implements InterfaceList {
         head = node;
     }
 
-    public void addList(InterfaceList list) {
+    public void addList(LinkList list) {
         for (int i = 0; i < list.getSize(); i++) {
             size++;
             Node newNode = (Node) list.getNode(i);
@@ -62,12 +62,12 @@ public class LinkList implements InterfaceList {
         }
     }
 
-    public InterfaceList intersect(InterfaceList list) {
+    public InterfaceList intersect(LinkList list) {
         InterfaceList list3 = new LinkList();
 
         for (int i = 0; i < this.getSize()-1; i++) {
             for (int j = 0; j < list.getSize()-1; j++) {
-                if (this.getNodeValue(i) == list.getNodeValue(j)) list3.add(list.getNodeValue(j));
+                if (this.getNodeValue(i) == (list).getNodeValue(j)) list3.add(list.getNodeValue(j));
             }
         }
         return list3;
