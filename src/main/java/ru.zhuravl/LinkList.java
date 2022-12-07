@@ -68,7 +68,7 @@ public class LinkList implements InterfaceList {
         return node.getValue();
     }
 
-    public void add(String data) {
+    public void addFront(String data) {
         size++;
         Node node = new Node(data, null);
         if (tail == null)
@@ -96,7 +96,7 @@ public class LinkList implements InterfaceList {
         for (int i = 0; i < this.size-1; i++) {
             for (int j = 0; j < list.size-1; j++)
                 if (this.getElement(i) == (list).getElement(j))
-                    list3.add(list.getElement(j));
+                    list3.addFront(list.getElement(j));
         }
         return list3;
     }

@@ -2,7 +2,7 @@ package ru.zhuravl;
 
 public interface InterfaceList {
 
-    void add(String data);
+    void addFront(String data);
 
     void printList();
 
