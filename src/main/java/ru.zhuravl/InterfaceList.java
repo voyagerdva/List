@@ -2,22 +2,15 @@ package ru.zhuravl;
 
 public interface InterfaceList {
 
-    void addFront(String data);
-
-    void printList();
-
+    InterfaceList intersect(LinkList list);
     String[] getListValues();
 
-    public void addList(LinkList list);
-
-    public InterfaceList intersect(LinkList list);
-
+    void add(String data);
+    void printList();
+    void addList(LinkList list);
     void removeHead();
-
     void removeElement(int index);
-
     String getElement(int index);
-
     int getSize();
 
 }

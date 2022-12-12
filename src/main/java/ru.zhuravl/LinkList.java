@@ -1,7 +1,6 @@
 package ru.zhuravl;
 
 public class LinkList implements InterfaceList {
-
     public class Node implements InterfaceItem {
         String value;
         Node next;
@@ -16,8 +15,16 @@ public class LinkList implements InterfaceList {
             return value;
         }
 
+        @Override
+        public InterfaceItem getNext() {
+            return next;
+        }
     }
 //==============================================================================
+
+    private InterfaceItem tail;
+    private InterfaceItem head;
+    private int size;
 
     public int getSize() {
         return size;
@@ -31,10 +38,6 @@ public class LinkList implements InterfaceList {
         return head;
     }
 
-    private Node tail;
-    private Node head;
-    private int size;
-
     LinkList() {
         initZero();
     }
@@ -45,37 +48,46 @@ public class LinkList implements InterfaceList {
         this.head = tail;
     }
 
-    public InterfaceItem getNode(int index) {
-        if (index > size-1) {
-            System.out.println("ERROR!!! Your index exceeds the list max size !!! The last head node is :");
-            return getHead();
+
+//=================================================================================
+    public void add(String data) {
+        size++;
+        InterfaceItem node = createNode(data);
+        if (tail == null) {
+            tail = node;
+        } else {
+            ((Node) head).next = (Node) node;
         }
-        InterfaceItem node = tail;
-        for (int i = 0; i < index; i++)
-            node = ((Node) node).next;
-        return node;
+        head = node;
     }
 
+    protected InterfaceItem createNode(String data) {
+        return new Node(data, null);
+    }
+
+    public InterfaceList intersect(LinkList list) {
+        InterfaceList list3 = createList();
+
+        for (int i = 0; i < this.size; i++) {
+            for (int j = 0; j < list.size; j++) {
+                if (this.getElement(i).equals((list).getElement(j))) {
+                    list3.add(list.getElement(j));
+                }
+            }
+        }
+        return list3;
+    }
 
     public String getElement(int index) {
         if (index > size - 1) {
             System.out.println("ERROR!!! Too big index!!!");
             return null;
         }
-        Node node = tail;
-        for (int i = 0; i < index; i++)
-            node = node.next;
+        InterfaceItem node = tail;
+        for (int i = 0; i < index; i++) {
+            node = node.getNext();
+        }
         return node.getValue();
-    }
-
-    public void addFront(String data) {
-        size++;
-        Node node = new Node(data, null);
-        if (tail == null)
-            tail = node;
-        else
-            head.next = node;
-        head = node;
     }
 
     public void addList(LinkList list) {
@@ -85,40 +97,67 @@ public class LinkList implements InterfaceList {
             if (this.tail == null)
                 this.tail = node;
             else
-                this.head.next = node;
+                ((Node) this.head).next = node;
             this.head = node;
         }
     }
 
-    public InterfaceList intersect(LinkList list) {
-        InterfaceList list3 = new LinkList();
-
-        for (int i = 0; i < this.size-1; i++) {
-            for (int j = 0; j < list.size-1; j++)
-                if (this.getElement(i) == (list).getElement(j))
-                    list3.addFront(list.getElement(j));
+    InterfaceItem getNode(int index) {
+        if (index > size - 1) {
+            System.out.println("ERROR!!! Your index exceeds the list max size !!! The last head node is :");
+            return getHead();
         }
-        return list3;
+        InterfaceItem node = tail;
+        for (int i = 0; i < index; i++)
+            node = ((Node) node).next;
+        return node;
     }
 
+    protected InterfaceList createList() {
+        return new LinkList();
+    }
 
-//==========================================================================================================
+    @Override
+    public void printList() {
+        InterfaceItem ref = tail;
+        for (int i = 0; i < getSize(); i++) {
+            System.out.printf("%s ", ref.getValue());
+            ref = ref.getNext();
+        }
+        System.out.println();
+    }
 
     public void removeHead() {
-        Node ref = tail;
-        for (int i = 0; i < size-2; i++)
-            ref = ref.next;
+        InterfaceItem ref = tail;
+        for (int i = 0; i < size - 2; i++)
+            ref = ref.getNext();
         head = ref;
-        head.next = null;
+        ((Node) head).next = null;
         size--;
     }
 
     @Override
+    public String[] getListValues() {
+        InterfaceItem ref = tail;
+        String[] list = new String[getSize()];
+
+        for (int i = 0; i < size; i++) {
+            list[i] = ref.getValue();
+            ref = ref.getNext();
+        }
+        return list;
+    }
+
+
+
+//=================================================================================
+
+    @Override
     public void removeElement(int index) {
-        Node ref = tail;
+        InterfaceItem ref = tail;
 
         if (index == 0) {
-            tail = ref.next;
+            tail = ref.getNext();
             size--;
             return;
         }
@@ -128,32 +167,41 @@ public class LinkList implements InterfaceList {
             return;
         }
 
-        for (int i = 0; i < index - 1 ; i++)
-            ref = ref.next;
+        for (int i = 0; i < index - 1; i++)
+            ref = ref.getNext();
 
-        ref.next = ref.next.next;
+        refNextNext(ref);
         size--;
     }
 
-
-    public void printList() {
-        Node ref = tail;
-        for (int i = 0; i < getSize(); i++) {
-            System.out.printf("%s ",ref.value);
-            ref = ref.next;
-        }
+    private Node refNextNext(InterfaceItem ref) {
+        ((Node) ref).next = (Node) ref.getNext().getNext();
+        return ((Node) ref).next;
     }
-
-    public String[] getListValues() {
-        Node ref = tail;
-        String[] list = new String[getSize()];
-
-        for (int i = 0; i < size; i++) {
-            list[i] = ref.getValue();
-            ref = ref.next;
-        }
-        return list;
-    }
-
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
